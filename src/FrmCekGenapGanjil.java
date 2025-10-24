@@ -38,10 +38,12 @@ public class FrmCekGenapGanjil extends javax.swing.JFrame {
         @Override
         public void keyTyped(KeyEvent e) {
             char c = e.getKeyChar();
-            if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE) {
-                e.consume(); // abaikan input non-angka
-                jLabel4.setText("Masukkan hanya angka!");
-            }
+        if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE) {
+            e.consume();
+            jLabel4.setText("Masukkan hanya angka!");
+        } else {
+            jLabel4.setText(""); // bersihkan jika valid
+        }
         }
     });
     }
@@ -184,7 +186,11 @@ public class FrmCekGenapGanjil extends javax.swing.JFrame {
 
     // Validasi jika kosong
     if (input.isEmpty()) {
-        jTextField1.setText("Masukkan angka!");
+        JOptionPane.showMessageDialog(this,
+        "Field tidak boleh kosong!",
+        "Peringatan",
+        JOptionPane.WARNING_MESSAGE);
+        jTextField1.requestFocus();
         return;
     }
 
